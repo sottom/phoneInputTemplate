@@ -120,6 +120,8 @@ var phoneTemplate = function(id){
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////
+
+    return phoneTemplate;
 };
 
 window.phoneTemplate = phoneTemplate;

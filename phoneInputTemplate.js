@@ -14,19 +14,19 @@ var phoneTemplate = function(id){
 
 
     //// add base template
-    phoneElement.value = "()-";
-    phoneElement.setAttribute("maxlength", 13);
+    phoneElement.value = "() -";
+    phoneElement.setAttribute("maxlength", 14);
     //////////////////////////////////////////////////////////////////////////////////////
 
 
     //// when phone field is clicked on
     phoneElement.addEventListener("click", function (e) {
         // if first 3 numbers
-        phoneElement.value.length < 6 
+        phoneElement.value.length < 7 
             // then put cursor inside parenthesis
-            ? setCaretPosition(phoneElement, (phoneElement.value.length - 2))
+            ? setCaretPosition(phoneElement, (phoneElement.value.length - 3))
             // else if second three numbers
-            : phoneElement.value.length < 9 
+            : phoneElement.value.length < 10 
                 // then put cursor after parentheses and before dash
                 ? setCaretPosition(phoneElement, phoneElement.value.length - 1)
                 // else put cursor at the end
@@ -38,21 +38,22 @@ var phoneTemplate = function(id){
     // listen for typing in phone field
     phoneElement.addEventListener("keyup", function (e) {
         // if first three numbers, put them inside the parentheses
-        if (phoneElement.value.replace(/[^0-9]/g, "").length < 4) {
+        if (phoneElement.value.replace(/[^0-9]/g, "").length < 3) {
             var val = phoneElement.value.replace(/[^0-9]/g, "");
-            phoneElement.value = "(" + val.substr(0, 3) + ")-";
-            setCaretPosition(phoneElement, phoneElement.value.length - 2);
+            phoneElement.value = "(" + val.substr(0, 3) + ") -";
+            setCaretPosition(phoneElement, phoneElement.value.length - 3);
         }
         // if second 3 numbers, put them before the dash
-        else if (phoneElement.value.replace(/[^0-9]/g, "").length < 7) {
+        else if (phoneElement.value.replace(/[^0-9]/g, "").length < 6) {
             var val = phoneElement.value.replace(/[^0-9]/g, "");
-            phoneElement.value = "(" + val.substr(0, 3) + ")" + val.substr(3, 3) + "-";
+            phoneElement.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-";
             setCaretPosition(phoneElement, phoneElement.value.length - 1);
         }
         // if last 4 numbers, add them to the end
         else {
             var val = phoneElement.value.replace(/[^0-9]/g, "");
-            phoneElement.value = "(" + val.substr(0, 3) + ")" + val.substr(3, 3) + "-" + val.substr(6);
+            phoneElement.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-" + val.substr(6);
+            setCaretPosition(phoneElement, phoneElement.value.length);
         }
     });
     //////////////////////////////////////////////////////////////////////////////////////

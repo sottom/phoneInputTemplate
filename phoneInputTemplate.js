@@ -14,7 +14,18 @@ var phoneTemplate = function(id){
 
 
     //// add base template
-    phoneElement.value = "() -";
+    if(phoneElement.value.replace(/[^0-9]/g, "").length === 0){
+        phoneElement.value = "() -";
+    }
+    else if (phoneElement.value.replace(/[^0-9]/g, "").length < 3){
+        threeNums();
+    }
+    else if (phoneElement.value.replace(/[^0-9]/g, "").length < 7){
+        sixNums();
+    }
+    else {
+        tenNums();
+    }
     phoneElement.setAttribute("maxlength", 14);
     //////////////////////////////////////////////////////////////////////////////////////
 
@@ -31,7 +42,7 @@ var phoneTemplate = function(id){
                 ? setCaretPosition(phoneElement, phoneElement.value.length - 1)
                 // else put cursor at the end
                 : null;
-    });
+            });
     //////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -39,23 +50,38 @@ var phoneTemplate = function(id){
     phoneElement.addEventListener("keyup", function (e) {
         // if first three numbers, put them inside the parentheses
         if (phoneElement.value.replace(/[^0-9]/g, "").length < 3) {
-            var val = phoneElement.value.replace(/[^0-9]/g, "");
-            phoneElement.value = "(" + val.substr(0, 3) + ") -";
-            setCaretPosition(phoneElement, phoneElement.value.length - 3);
+            threeNums();
         }
         // if second 3 numbers, put them before the dash
         else if (phoneElement.value.replace(/[^0-9]/g, "").length < 6) {
-            var val = phoneElement.value.replace(/[^0-9]/g, "");
-            phoneElement.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-";
-            setCaretPosition(phoneElement, phoneElement.value.length - 1);
+            sixNums();
         }
         // if last 4 numbers, add them to the end
         else {
-            var val = phoneElement.value.replace(/[^0-9]/g, "");
-            phoneElement.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-" + val.substr(6);
-            setCaretPosition(phoneElement, phoneElement.value.length);
+            tenNums();
         }
     });
+    //////////////////////////////////////////////////////////////////////////////////////
+
+
+    // functions to add numbers to template
+    function threeNums(){
+        var val = phoneElement.value.replace(/[^0-9]/g, "");
+        phoneElement.value = "(" + val.substr(0, 3) + ") -";
+        setCaretPosition(phoneElement, phoneElement.value.length - 3);
+    }
+
+    function sixNums(){
+        var val = phoneElement.value.replace(/[^0-9]/g, "");
+        phoneElement.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-";
+        setCaretPosition(phoneElement, phoneElement.value.length - 1);
+    }
+
+    function tenNums(){
+        var val = phoneElement.value.replace(/[^0-9]/g, "");
+        phoneElement.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-" + val.substr(6);
+        setCaretPosition(phoneElement, phoneElement.value.length);
+    }
     //////////////////////////////////////////////////////////////////////////////////////
 
 

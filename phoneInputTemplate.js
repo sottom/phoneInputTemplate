@@ -1,3 +1,8 @@
+// TODO
+//// add styling
+//// add ability to choose template
+//////////////////////////////////////////////////////////////////////////////////////////
+
 var phoneTemplate = function(id){
     //// get the input element for phone numbers
     var phoneElement;

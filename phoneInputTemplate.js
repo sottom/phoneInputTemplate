@@ -2,6 +2,10 @@
 //// add styling
 //// add ability to choose template
 //////////////////////////////////////////////////////////////////////////////////////////
+
+(function(window)
+{
+
 var phoneTemplate = function(id){
     //// get the input element for phone numbers
     var phoneElement;
@@ -52,24 +56,24 @@ var phoneTemplate = function(id){
 
         // if first three numbers, put them inside the parentheses
         if (phoneElement.value.replace(/[^0-9]/g, "").length < 3) {
-            threeNums();
+            threeNums(phoneElement);
         }
         // if second 3 numbers, put them before the dash
         else if (phoneElement.value.replace(/[^0-9]/g, "").length < 6) {
             if (e.keyCode == 8 && phoneElement.value.replace(/[^0-9]/g, "").length < 4) {
-                threeNums();
+                threeNums(phoneElement);
             }
             else {
-                sixNums();
+                sixNums(phoneElement);
             }
         }
         // if last 4 numbers, add them to the end
         else {
             if (e.keyCode == 8 && phoneElement.value.replace(/[^0-9]/g, "").length < 7) {
-                sixNums();
+                sixNums(phoneElement);
             }
             else {
-                tenNums();
+                tenNums(phoneElement);
             }
         }
     });
@@ -77,22 +81,22 @@ var phoneTemplate = function(id){
 
 
     // functions to add numbers to template
-    function threeNums(){
-        var val = phoneElement.value.replace(/[^0-9]/g, "");
-        phoneElement.value = "(" + val.substr(0, 3) + ") -";
-        setCaretPosition(phoneElement, phoneElement.value.length - 3);
+    function threeNums(elem){
+        var val = elem.value.replace(/[^0-9]/g, "");
+        elem.value = "(" + val.substr(0, 3) + ") -";
+        setCaretPosition(elem, elem.value.length - 3);
     }
 
-    function sixNums(){
-        var val = phoneElement.value.replace(/[^0-9]/g, "");
-        phoneElement.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-";
-        setCaretPosition(phoneElement, phoneElement.value.length - 1);
+    function sixNums(elem){
+        var val = elem.value.replace(/[^0-9]/g, "");
+        elem.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-";
+        setCaretPosition(elem, elem.value.length - 1);
     }
 
-    function tenNums(){
-        var val = phoneElement.value.replace(/[^0-9]/g, "");
-        phoneElement.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-" + val.substr(6);
-        setCaretPosition(phoneElement, phoneElement.value.length);
+    function tenNums(elem){
+        var val = elem.value.replace(/[^0-9]/g, "");
+        elem.value = "(" + val.substr(0, 3) + ") " + val.substr(3, 3) + "-" + val.substr(6);
+        setCaretPosition(elem, elem.value.length);
     }
     //////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,3 +122,6 @@ var phoneTemplate = function(id){
     //////////////////////////////////////////////////////////////////////////////////////
 };
 
+window.phoneTemplate = phoneTemplate;
+
+}(window));

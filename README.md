@@ -5,7 +5,7 @@ Users just type their number and it will auto format.
 
 ![picture](img/demo.PNG)
 
-# Setting it up
+# Setting up
 
 1. Create and navigate to the /js folder in the root of your project  
 2. Clone the repo

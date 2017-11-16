@@ -1,5 +1,5 @@
 # phoneInputTemplate
-![picture](img/bootstrap-demo.PNG)
+![picture](img/demo.PNG)
 ```
 <html>
 <head>

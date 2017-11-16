@@ -2,7 +2,6 @@
 //// add styling
 //// add ability to choose template
 //////////////////////////////////////////////////////////////////////////////////////////
-
 var phoneTemplate = function(id){
     //// get the input element for phone numbers
     var phoneElement;
@@ -21,6 +20,7 @@ var phoneTemplate = function(id){
         threeNums();
     }
     else if (phoneElement.value.replace(/[^0-9]/g, "").length < 7){
+        console.log('bob');
         sixNums();
     }
     else {
@@ -48,17 +48,29 @@ var phoneTemplate = function(id){
 
     // listen for typing in phone field
     phoneElement.addEventListener("keyup", function (e) {
+        // if second 3 numbers, put them before the dash
+
         // if first three numbers, put them inside the parentheses
         if (phoneElement.value.replace(/[^0-9]/g, "").length < 3) {
             threeNums();
         }
         // if second 3 numbers, put them before the dash
         else if (phoneElement.value.replace(/[^0-9]/g, "").length < 6) {
-            sixNums();
+            if (e.keyCode == 8 && phoneElement.value.replace(/[^0-9]/g, "").length < 4) {
+                threeNums();
+            }
+            else {
+                sixNums();
+            }
         }
         // if last 4 numbers, add them to the end
         else {
-            tenNums();
+            if (e.keyCode == 8 && phoneElement.value.replace(/[^0-9]/g, "").length < 7) {
+                sixNums();
+            }
+            else {
+                tenNums();
+            }
         }
     });
     //////////////////////////////////////////////////////////////////////////////////////

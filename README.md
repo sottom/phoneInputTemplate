@@ -3,7 +3,7 @@
 This javascript file creates a phone number template for an input box of your choice.  
 Users just type their number and it will auto format.
 
-![picture](img/demos.PNG)
+![picture](img/phoneInputDemo.gif)
 
 # Setting up
 

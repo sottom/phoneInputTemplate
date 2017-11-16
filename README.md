@@ -1,11 +1,12 @@
 # phoneInputTemplate
+![picture](img/bootstrap-demo.PNG)
 ```
 <html>
 <head>
 
   <!-- path to phoneInputTemplate.js -->
   <script src="/js/phoneInputTemplate/phoneInputTemplate.js"></script>
-  
+
 </head>
 <body>
 

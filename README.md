@@ -14,7 +14,7 @@ Users just type their number and it will auto format.
 `<script src="/js/phoneInputTemplate/phoneInputTemplate.js"></script>`
 4. Create an input tag with an id (any name you want)  
 `<input type="text" id="myInput">`
-5. Add script tag before the ending </body> tag and and pass the <input>'s id into the phoneTemplate() function
+5. Add script tag before the ending body tag and pass the input's id into the phoneTemplate() function
 ```
   <script>
     phoneTemplate("myInput");
